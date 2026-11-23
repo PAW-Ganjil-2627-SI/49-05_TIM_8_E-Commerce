@@ -3,11 +3,6 @@
 @section('content')
     <h2 class="text-center mb-4">Voucher dan promo yang tersedia</h2>
 
-    {{-- Hapus blok ini jika layouts/app.blade.php sudah menampilkan pesan 'success' --}}
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
     <div class="table-responsive">
         <table class="table table-bordered align-middle bg-white">
             <thead class="table-primary">

@@ -43,11 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/voucher-rekap', [VoucherDiskonController::class, 'rekap'])
         ->can('lihat-rekap-voucher')
         ->name('voucher.rekap');
-
-    Route::get('/voucher/{voucher}/edit', [VoucherDiskonController::class, 'edit'])
-            ->name('voucher.edit')
-            ->can('update', 'voucher');
-    Route::put('/voucher/{voucher}', [VoucherDiskonController::class, 'update'])
-        ->name('voucher.update')
-        ->can('update', 'voucher');
 });

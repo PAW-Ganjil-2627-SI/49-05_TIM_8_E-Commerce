@@ -8,7 +8,8 @@
             <form action="{{ route('voucher.update', $voucher) }}" method="POST">
                 @csrf
                 @method('PUT')
-                @include('voucher._form')
+                {{-- Admin melihat semua kolom, kasir hanya kolom yang boleh diubah --}}
+                @include('voucher._form', ['semua' => auth()->user()->can('ubahNilai', $voucher)])
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('voucher.daftar') }}" class="btn btn-secondary">Batal</a>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>

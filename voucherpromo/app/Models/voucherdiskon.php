@@ -18,4 +18,14 @@ class VoucherDiskon extends Model
         'berlaku',
         'status',
     ];
+
+    // Ubah status voucher yang tanggal berlakunya sudah lewat menjadi 'nonaktif'.
+    // Voucher masih berlaku sampai akhir hari pada tanggal 'berlaku'.
+    // Mengembalikan jumlah voucher yang diubah.
+    public static function nonaktifkanKedaluwarsa(): int
+    {
+        return static::where('status', 'aktif')
+            ->whereDate('berlaku', '<', now()->toDateString())
+            ->update(['status' => 'nonaktif']);
+    }
 }

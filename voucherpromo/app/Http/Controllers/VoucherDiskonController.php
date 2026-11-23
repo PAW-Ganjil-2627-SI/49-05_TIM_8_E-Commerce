@@ -25,6 +25,9 @@ class VoucherDiskonController extends Controller
     // SELECT: daftar voucher (publik)
     public function daftar()
     {
+        // Voucher yang sudah kedaluwarsa otomatis dinonaktifkan sebelum ditampilkan
+        VoucherDiskon::nonaktifkanKedaluwarsa();
+
         $vouchers = VoucherDiskon::orderBy('id')->get();
 
         return view('voucher.daftar', compact('vouchers'));
@@ -84,6 +87,9 @@ class VoucherDiskonController extends Controller
     // Halaman rekap (dilindungi Gate 'lihat-rekap-voucher' di route)
     public function rekap()
     {
+        // Pastikan angka rekap memakai status terbaru
+        VoucherDiskon::nonaktifkanKedaluwarsa();
+
         return view('voucher.rekap', [
             'total'    => VoucherDiskon::count(),
             'aktif'    => VoucherDiskon::where('status', 'aktif')->count(),
