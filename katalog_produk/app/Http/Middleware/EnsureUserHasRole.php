@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-sysfony\Component\HttpFoundation\Response; 
+use symfony\Component\HttpFoundation\Response; 
 
 class EnsureUserHasRole
 {
